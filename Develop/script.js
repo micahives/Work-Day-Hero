@@ -1,4 +1,4 @@
-// Displays the formatted current day, from HTML ID "currentDay"
+// Displays the formatted current day
 var today = dayjs();
 $("#currentDay").text(today.format('dddd, MMMM DD'));
 
@@ -27,4 +27,7 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
 });
 
-
+function nineToFive() {
+  // Renders timeblocks from 9am to 5pm
+  
+}

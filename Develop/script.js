@@ -2,6 +2,7 @@
 var today = dayjs();
 $("#currentDay").text(today.format('dddd, MMMM DD'));
 
+const workHours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
@@ -14,11 +15,29 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
+
+
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
+
+  //MBI: Give each hour a dayjs(); time representation and then have the function compare that time
+  //MBI: ...with the current time and add the past/present/future classes accordingly
+  var currentHour = dayjs().hour();
+  console.log(`Current Hour: ${currentHour}`);
+  if (time represented by the time block is in the past) {
+    any div that is in the past: $(".past");
+  } else if (time in block is at present) {
+      any div that meets this condition: $(".present");
+
+  } else {
+      any div that is in the future, apply: $(".future");
+  }
+  
+
+
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
@@ -26,8 +45,3 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
-
-function nineToFive() {
-  // Renders timeblocks from 9am to 5pm
-  
-}

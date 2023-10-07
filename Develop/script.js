@@ -2,17 +2,36 @@
 var currentHour = dayjs().hour();
 console.log(`Current Hour: ${currentHour}`);
 
-const divElements = document.querySelectorAll('div');
+var nineAM = document.getElementById('hour-9');
+nineAM = 9;
 
-const nineAM = dayjs().set('hour', 9);
-const hour9Div = document.getElementById('hour-9');
-hour9Div.id = nineAM;
+var tenAM = document.getElementById('hour-10');
+tenAM = 10;
+
+const timeBlocks = [nineAM, tenAM];
+
 
 // Code that interacts with DOM nested in jQuery call to ensure proper rendering
 $(document).ready(function() {
   // Displays the formatted current day
     var today = dayjs();
     $("#currentDay").text(today.format('dddd, MMMM DD'));
+
+    if (currentHour > nineAM) {
+      $("#hour-9").addClass("past");
+    } else if (currentHour < nineAM) {
+      $("#hour-9").addClass("future");
+    } else {
+      $("#hour-9").addClass("present");
+    }
+
+    if (currentHour > tenAM) {
+      $("#hour-10").addClass("past");
+    } else if (currentHour < tenAM) {
+      $("#hour-10").addClass("future");
+    } else {
+      $("#hour-10").addClass("present");
+    }
 
 })
 

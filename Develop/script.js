@@ -2,37 +2,64 @@
 var currentHour = dayjs().hour();
 console.log(`Current Hour: ${currentHour}`);
 
-var nineAM = document.getElementById('hour-9');
-nineAM = 9;
-
-var tenAM = document.getElementById('hour-10');
-tenAM = 10;
-
-const timeBlocks = [nineAM, tenAM];
-
+const timeBlocks = [
+  {
+    id: "hour-9",
+    hour: 9
+  },
+  {
+    id: "hour-10",
+    hour: 10
+  },
+  {
+    id: "hour-11",
+    hour: 11
+  },
+  {
+    id: "hour-12",
+    hour: 12
+  },
+  {
+    id: "hour-13",
+    hour: 13
+  },
+  {
+    id: "hour-14",
+    hour: 14
+  },
+  {
+    id: "hour-15",
+    hour: 15
+  },
+  {
+    id: "hour-16",
+    hour: 16
+  },
+  {
+    id: "hour-17",
+    hour: 20
+  }];
 
 // Code that interacts with DOM nested in jQuery call to ensure proper rendering
 $(document).ready(function() {
-  // Displays the formatted current day
-    var today = dayjs();
-    $("#currentDay").text(today.format('dddd, MMMM DD'));
+  var today = dayjs();
+  $("#currentDay").text(today.format('dddd, MMMM DD'));
 
-    if (currentHour > nineAM) {
-      $("#hour-9").addClass("past");
-    } else if (currentHour < nineAM) {
-      $("#hour-9").addClass("future");
+  // Goes through each timeBlock object, adds class when its hour is compared with currentHour
+  timeBlocks.forEach(function(currentObject) {
+    // Selects an individual time block
+    var individualBlock = $("#" + currentObject.id);
+    console.log("ID: ", currentObject.id);
+    console.log("Hour: ", currentObject.hour);
+
+    if (currentHour > currentObject.hour) {
+      individualBlock.addClass("past");
+    } else if (currentHour < currentObject.hour) {
+      individualBlock.addClass("future");
     } else {
-      $("#hour-9").addClass("present");
+      individualBlock.addClass("present");
     }
-
-    if (currentHour > tenAM) {
-      $("#hour-10").addClass("past");
-    } else if (currentHour < tenAM) {
-      $("#hour-10").addClass("future");
-    } else {
-      $("#hour-10").addClass("present");
-    }
-
+  });
 })
 
 // DAYJS .isSame(), .isBefore(), .isAfter, compare current time with parsed js time
